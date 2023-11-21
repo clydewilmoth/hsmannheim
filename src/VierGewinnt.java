@@ -49,14 +49,14 @@ public class VierGewinnt {
             outer:
             for (int n = 0; n < spielfeld.length; n++) {
                 for (int i = 0; i <= spielfeld.length; i++) {
-                    if (spielfeld[i][tipRot - 1].equals("[ ]")) {
-                        spielfeld[i][tipRot - 1] = "[" + anfangsbuchstabeSpielerRot[0] + "]";
+                    if (spielfeld[i][tipRot - 1].equals("_")) {
+                        spielfeld[i][tipRot - 1] = anfangsbuchstabeSpielerRot[0];
                         break outer;
                     }
                 }
             }
             spielfeldAusgabe(spielfeld);
-            if (gewinnBedingung(spielfeld, "[" + anfangsbuchstabeSpielerRot[0] + "]")) {
+            if (gewinnBedingung(spielfeld, anfangsbuchstabeSpielerRot[0])) {
 
                 spielerRotCounter++;
                 System.out.println(spielerRot + " hat gewonnen! Der Zwischenstand beträgt: (" + spielerRot + "): " + spielerRotCounter + ":" + spielerBlauCounter + " :(" + spielerBlau + ")");
@@ -78,7 +78,7 @@ public class VierGewinnt {
             }
 
             tipBlau = (int) (Math.random() * 7 + 1);
-            while (!(spielfeld[5][tipBlau - 1].equals("[ ]"))) {
+            while (!(spielfeld[5][tipBlau - 1].equals("_"))) {
 
                 tipBlau = (int) (Math.random() * 7 + 1);
 
@@ -88,14 +88,14 @@ public class VierGewinnt {
             outer:
             for (int n = 0; n < spielfeld.length; n++) {
                 for (int i = 0; i <= spielfeld.length; i++) {
-                    if (spielfeld[i][tipBlau - 1].equals("[ ]")) {
-                        spielfeld[i][tipBlau - 1] = "[" + anfangsbuchstabeSpielerBlau[0] + "]";
+                    if (spielfeld[i][tipBlau - 1].equals("_")) {
+                        spielfeld[i][tipBlau - 1] = anfangsbuchstabeSpielerBlau[0];
                         break outer;
                     }
                 }
             }
             spielfeldAusgabe(spielfeld);
-            if (gewinnBedingung(spielfeld, "[" + anfangsbuchstabeSpielerBlau[0] + "]")) {
+            if (gewinnBedingung(spielfeld, anfangsbuchstabeSpielerBlau[0])) {
 
                 spielerBlauCounter++;
                 System.out.println(spielerBlau + " hat gewonnen! Der Zwischenstand beträgt: (" + spielerRot + "): " + spielerRotCounter + ":" + spielerBlauCounter + " :(" + spielerBlau + ")");
@@ -125,14 +125,14 @@ public class VierGewinnt {
             outer:
             for (int n = 0; n < spielfeld.length; n++) {
                 for (int i = 0; i <= spielfeld.length; i++) {
-                    if (spielfeld[i][tipRot - 1].equals("[ ]")) {
-                        spielfeld[i][tipRot - 1] = "[" + anfangsbuchstabeSpielerRot[0] + "]";
+                    if (spielfeld[i][tipRot - 1].equals("_")) {
+                        spielfeld[i][tipRot - 1] = anfangsbuchstabeSpielerRot[0];
                         break outer;
                     }
                 }
             }
             spielfeldAusgabe(spielfeld);
-            if (gewinnBedingung(spielfeld, "[" + anfangsbuchstabeSpielerRot[0] + "]")) {
+            if (gewinnBedingung(spielfeld, anfangsbuchstabeSpielerRot[0])) {
 
                 spielerRotCounter++;
                 System.out.println(spielerRot + " hat gewonnen! Der Zwischenstand beträgt: (" + spielerRot + "): " + spielerRotCounter + ":" + spielerBlauCounter + " :(" + spielerBlau + ")");
@@ -158,14 +158,14 @@ public class VierGewinnt {
             outer:
             for (int n = 0; n < spielfeld.length; n++) {
                 for (int i = 0; i <= spielfeld.length; i++) {
-                    if (spielfeld[i][tipBlau - 1].equals("[ ]")) {
-                        spielfeld[i][tipBlau - 1] = "[" + anfangsbuchstabeSpielerBlau[0] + "]";
+                    if (spielfeld[i][tipBlau - 1].equals("_")) {
+                        spielfeld[i][tipBlau - 1] = anfangsbuchstabeSpielerBlau[0];
                         break outer;
                     }
                 }
             }
             spielfeldAusgabe(spielfeld);
-            if (gewinnBedingung(spielfeld, "[" + anfangsbuchstabeSpielerBlau[0] + "]")) {
+            if (gewinnBedingung(spielfeld, anfangsbuchstabeSpielerBlau[0])) {
 
                 spielerBlauCounter++;
                 System.out.println(spielerBlau + " hat gewonnen! Der Zwischenstand beträgt: (" + spielerRot + "): " + spielerRotCounter + ":" + spielerBlauCounter + " :(" + spielerBlau + ")");
@@ -200,15 +200,15 @@ public class VierGewinnt {
     public static void spielfeldAusgabe(String[][] a) {
         System.out.println();
         for (int n = 5; n >= 0; n--) {
-
+            System.out.print("|");
             for (int i = 0; i <= a.length; i++) {
 
-                System.out.printf("%3s \t", a[n][i]);
+                System.out.printf("\t%s\t|", a[n][i]);
 
             }
-            System.out.println("\n");
+            System.out.println();
         }
-        System.out.println("\n[1] \t[2] \t[3] \t[4] \t[5] \t[6] \t[7]\n");
+        System.out.println("\n|\t1\t|\t2\t|\t3\t|\t4\t|\t5\t|\t6\t|\t7\t|\n");
     }
 
     public static void leeresSpielfeld(String[][] a) {
@@ -217,7 +217,7 @@ public class VierGewinnt {
 
             for (int x = 0; x < a.length; x++) {
 
-                a[x][y] = "[ ]";
+                a[x][y] = "_";
 
             }
         }
@@ -257,20 +257,20 @@ public class VierGewinnt {
 
     public static boolean unentschiedenBedingung(String[][] a) {
 
-        return (!a[0][0].equals("[ ]") && !a[1][0].equals("[ ]") && !a[2][0].equals("[ ]") &&
-                !a[3][0].equals("[ ]") && !a[4][0].equals("[ ]") && !a[5][0].equals("[ ]") &&
-                !a[0][1].equals("[ ]") && !a[1][1].equals("[ ]") && !a[2][1].equals("[ ]") &&
-                !a[3][1].equals("[ ]") && !a[4][1].equals("[ ]") && !a[5][1].equals("[ ]") &&
-                !a[0][2].equals("[ ]") && !a[1][2].equals("[ ]") && !a[2][2].equals("[ ]") &&
-                !a[3][2].equals("[ ]") && !a[4][2].equals("[ ]") && !a[5][2].equals("[ ]") &&
-                !a[0][3].equals("[ ]") && !a[1][3].equals("[ ]") && !a[2][3].equals("[ ]") &&
-                !a[3][3].equals("[ ]") && !a[4][3].equals("[ ]") && !a[5][3].equals("[ ]") &&
-                !a[0][4].equals("[ ]") && !a[1][4].equals("[ ]") && !a[2][4].equals("[ ]") &&
-                !a[3][4].equals("[ ]") && !a[4][4].equals("[ ]") && !a[5][4].equals("[ ]") &&
-                !a[0][5].equals("[ ]") && !a[1][5].equals("[ ]") && !a[2][5].equals("[ ]") &&
-                !a[3][5].equals("[ ]") && !a[4][5].equals("[ ]") && !a[5][5].equals("[ ]") &&
-                !a[0][6].equals("[ ]") && !a[1][6].equals("[ ]") && !a[2][6].equals("[ ]") &&
-                !a[3][6].equals("[ ]") && !a[4][6].equals("[ ]") && !a[5][6].equals("[ ]"));
+        return (!a[0][0].equals("_") && !a[1][0].equals("_") && !a[2][0].equals("_") &&
+                !a[3][0].equals("_") && !a[4][0].equals("_") && !a[5][0].equals("_") &&
+                !a[0][1].equals("_") && !a[1][1].equals("_") && !a[2][1].equals("_") &&
+                !a[3][1].equals("_") && !a[4][1].equals("_") && !a[5][1].equals("_") &&
+                !a[0][2].equals("_") && !a[1][2].equals("_") && !a[2][2].equals("_") &&
+                !a[3][2].equals("_") && !a[4][2].equals("_") && !a[5][2].equals("_") &&
+                !a[0][3].equals("_") && !a[1][3].equals("_") && !a[2][3].equals("_") &&
+                !a[3][3].equals("_") && !a[4][3].equals("_") && !a[5][3].equals("_") &&
+                !a[0][4].equals("_") && !a[1][4].equals("_") && !a[2][4].equals("_") &&
+                !a[3][4].equals("_") && !a[4][4].equals("_") && !a[5][4].equals("_") &&
+                !a[0][5].equals("_") && !a[1][5].equals("_") && !a[2][5].equals("_") &&
+                !a[3][5].equals("_") && !a[4][5].equals("_") && !a[5][5].equals("_") &&
+                !a[0][6].equals("_") && !a[1][6].equals("_") && !a[2][6].equals("_") &&
+                !a[3][6].equals("_") && !a[4][6].equals("_") && !a[5][6].equals("_"));
 
     }
 

@@ -40,10 +40,6 @@ public class BubbleSort {
 
         } while(!sortiert);
 
-
-        System.out.println(Arrays.toString(arr));
-        System.out.println(zähler);
-
         return arr;
 
     }

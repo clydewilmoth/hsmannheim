@@ -4,7 +4,7 @@ public class Matrix {
     public static void main(String[] args){
 
         int[][] matrix = {{3,5,8},{6,2,3},{4,1,0}};
-        int[] vektor = {2,4,5};
+        int[] vektor = {324,543,123};
         int[] ergebnis = new int[3];
 
         for(int n=0; n<matrix.length; n++) {
@@ -81,8 +81,9 @@ public class Matrix {
 
         System.out.println(testUmgedreht2);
 
-        System.out.println(BubbleSort.BubbleSort(vektor)[1]);
-
+        for(int i = 0; i<vektor.length; i++) {
+            System.out.print(BubbleSort.BubbleSort(vektor)[i]+" ");
+        }
 
     }
 

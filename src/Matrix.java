@@ -81,6 +81,8 @@ public class Matrix {
 
         System.out.println(testUmgedreht2);
 
+        System.out.println(BubbleSort.BubbleSort(vektor)[1]);
+
 
     }
 

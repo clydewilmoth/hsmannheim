@@ -9,48 +9,53 @@ public class WirtschaftsRechnung {
     static ArrayList<String> Kundennummer = new ArrayList<>();
     static ArrayList<String> Produkt = new ArrayList<>();
     static ArrayList<Integer> Anzahl = new ArrayList<>();
-    static ArrayList<Double> Preis = new ArrayList<>();
+    static ArrayList<Float> Preis = new ArrayList<>();
 
     public static void main(String[] args) throws Exception {
 
-        ArrayList<String> datei1 = new ArrayList<>();
-        ArrayList<String> datei2 = new ArrayList<>();
-        ArrayList<String> datei3 = new ArrayList<>();
-        ArrayList<String> datei4 = new ArrayList<>();
-        ArrayList<String> datei5 = new ArrayList<>();
-        ArrayList<String> datei6 = new ArrayList<>();
-        ArrayList<String> datei7 = new ArrayList<>();
-        ArrayList<String> datei8 = new ArrayList<>();
-        ArrayList<String> datei9 = new ArrayList<>();
-        ArrayList<String> datei10 = new ArrayList<>();
-        ArrayList<String> datei11 = new ArrayList<>();
-        ArrayList<String> datei12 = new ArrayList<>();
+        float umsatzJahr = 0;
 
         umsatzGenerator();
 
-        addToList(datei1, "2019-1.csv");
-        addToList(datei2, "2019-2.csv");
-        addToList(datei3, "2019-3.csv");
-        addToList(datei4, "2019-4.csv");
-        addToList(datei5, "2019-5.csv");
-        addToList(datei6, "2019-6.csv");
-        addToList(datei7, "2019-7.csv");
-        addToList(datei8, "2019-8.csv");
-        addToList(datei9, "2019-9.csv");
-        addToList(datei10, "2019-10.csv");
-        addToList(datei11, "2019-11.csv");
-        addToList(datei12, "2019-12.csv");
+        for (int i = 1; i <= 12; i++)
+            addToList("2019-"+i+".csv");
+        for (int i = 1; i <= 12; i++)
+            umsatzJahr += umsatzRechnerMonat(i);
 
+        System.out.println("Der Gesamtumsatz in Jahr 2019 beträgt: "+umsatzJahr);
 
-        System.out.println(Bestellung);
-        System.out.println(Tag);
-        System.out.println(Monat);
-        System.out.println(Jahr);
-        System.out.println(Standort);
-        System.out.println(Kundennummer);
-        System.out.println(Produkt);
-        System.out.println(Anzahl);
-        System.out.println(Preis);
+        System.out.println();
+        System.out.println("Der Umsatz im Januar 2019 beträgt: "+umsatzRechnerMonat(1)+
+                " mit einer MwSt. von: "+(umsatzRechnerMonat(1)*0.19));
+        System.out.println("Der Umsatz im Februar 2019 beträgt: "+umsatzRechnerMonat(2)+
+                " mit einer MwSt. von: "+(umsatzRechnerMonat(2)*0.19));
+        System.out.println("Der Umsatz im März 2019 beträgt: "+umsatzRechnerMonat(3)+
+                " mit einer MwSt. von: "+(umsatzRechnerMonat(3)*0.19));
+        System.out.println("Der Umsatz im April 2019 beträgt: "+umsatzRechnerMonat(4)+
+                " mit einer MwSt. von: "+(umsatzRechnerMonat(4)*0.19));
+        System.out.println("Der Umsatz im Mai 2019 beträgt: "+umsatzRechnerMonat(5)+
+                " mit einer MwSt. von: "+(umsatzRechnerMonat(5)*0.19));
+        System.out.println("Der Umsatz im Juni 2019 beträgt: "+umsatzRechnerMonat(6)+
+                " mit einer MwSt. von: "+(umsatzRechnerMonat(6)*0.19));
+        System.out.println("Der Umsatz im Juli 2019 beträgt: "+umsatzRechnerMonat(7)+
+                " mit einer MwSt. von: "+(umsatzRechnerMonat(7)*0.19));
+        System.out.println("Der Umsatz im August 2019 beträgt: "+umsatzRechnerMonat(8)+
+                " mit einer MwSt. von: "+(umsatzRechnerMonat(8)*0.19));
+        System.out.println("Der Umsatz im September 2019 beträgt: "+umsatzRechnerMonat(9)+
+                " mit einer MwSt. von: "+(umsatzRechnerMonat(9)*0.19));
+        System.out.println("Der Umsatz im Oktober 2019 beträgt: "+umsatzRechnerMonat(10)+
+                " mit einer MwSt. von: "+(umsatzRechnerMonat(10)*0.19));
+        System.out.println("Der Umsatz im November 2019 beträgt: "+umsatzRechnerMonat(11)+
+                " mit einer MwSt. von: "+(umsatzRechnerMonat(11)*0.19));
+        System.out.println("Der Umsatz im Dezember 2019 beträgt: "+umsatzRechnerMonat(12)+
+                " mit einer MwSt. von: "+(umsatzRechnerMonat(12)*0.19));
+
+        System.out.println();
+        System.out.println("Der Umsatz in Mannheim 2019 beträgt: "+umsatzRechnerStandort("Mannheim"));
+        System.out.println("Der Umsatz in Heidelberg 2019 beträgt: "+umsatzRechnerStandort("Heidelberg"));
+        System.out.println("Der Umsatz in Schwetzingen 2019 beträgt: "+umsatzRechnerStandort("Schwetzingen"));
+        System.out.println("Der Umsatz in Speyer 2019 beträgt: "+umsatzRechnerStandort("Mannheim"));
+        System.out.println("Der Umsatz in Neustadt 2019 beträgt: "+umsatzRechnerStandort("Neustadt"));
 
     }
     public static ArrayList<String> readFile(String path) throws FileNotFoundException {
@@ -65,8 +70,8 @@ public class WirtschaftsRechnung {
 
         return lines;
     }
-    public static void addToList(ArrayList<String> datei, String path) throws FileNotFoundException {
-        datei = readFile(path);
+    public static void addToList(String path) throws FileNotFoundException {
+        ArrayList<String> datei = readFile(path);
         String[][] v = new String[datei.size()][7];
         int[][] t = new int[datei.size()][3];
         String[][] q = new String[datei.size()][3];
@@ -89,7 +94,7 @@ public class WirtschaftsRechnung {
             Kundennummer.add(v[s][3]);
             Produkt.add(v[s][4]);
             Anzahl.add(Integer.parseInt(v[s][5]));
-            Preis.add(Double.parseDouble(v[s][6]));
+            Preis.add(Float.parseFloat(v[s][6]));
             s++;
         }
     }
@@ -130,5 +135,28 @@ public class WirtschaftsRechnung {
         System.out.println("done.");
 
     }
+    public static float umsatzRechnerMonat(int monat){
+        float umsatzProVerkauf;
+        float umsatz = 0;
+        for (int i = 0; i < Anzahl.size(); i++){
 
+            if(Monat.get(i) == monat) {
+                umsatzProVerkauf = Anzahl.get(i) * Preis.get(i);
+                umsatz += umsatzProVerkauf;
+            }
+        }
+        return umsatz;
+    }
+    public static float umsatzRechnerStandort(String standort){
+        float umsatzProVerkauf;
+        float umsatz = 0;
+        for (int i = 0; i < Anzahl.size(); i++){
+
+            if(Standort.get(i).equals(standort)) {
+                umsatzProVerkauf = Anzahl.get(i) * Preis.get(i);
+                umsatz += umsatzProVerkauf;
+            }
+        }
+        return umsatz;
+    }
 }

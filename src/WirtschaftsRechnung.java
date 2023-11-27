@@ -11,7 +11,7 @@ public class WirtschaftsRechnung {
     static ArrayList<Integer> Anzahl = new ArrayList<>();
     static ArrayList<Double> Preis = new ArrayList<>();
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws Exception {
 
         ArrayList<String> datei1 = new ArrayList<>();
         ArrayList<String> datei2 = new ArrayList<>();
@@ -26,18 +26,20 @@ public class WirtschaftsRechnung {
         ArrayList<String> datei11 = new ArrayList<>();
         ArrayList<String> datei12 = new ArrayList<>();
 
-        addToList(datei1, "src/ressources/2019-1.csv");
-        addToList(datei2, "src/ressources/2019-2.csv");
-        addToList(datei3, "src/ressources/2019-3.csv");
-        addToList(datei4, "src/ressources/2019-4.csv");
-        addToList(datei5, "src/ressources/2019-5.csv");
-        addToList(datei6, "src/ressources/2019-6.csv");
-        addToList(datei7, "src/ressources/2019-7.csv");
-        addToList(datei8, "src/ressources/2019-8.csv");
-        addToList(datei9, "src/ressources/2019-9.csv");
-        addToList(datei10, "src/ressources/2019-10.csv");
-        addToList(datei11, "src/ressources/2019-11.csv");
-        addToList(datei12, "src/ressources/2019-12.csv");
+        umsatzGenerator();
+
+        addToList(datei1, "2019-1.csv");
+        addToList(datei2, "2019-2.csv");
+        addToList(datei3, "2019-3.csv");
+        addToList(datei4, "2019-4.csv");
+        addToList(datei5, "2019-5.csv");
+        addToList(datei6, "2019-6.csv");
+        addToList(datei7, "2019-7.csv");
+        addToList(datei8, "2019-8.csv");
+        addToList(datei9, "2019-9.csv");
+        addToList(datei10, "2019-10.csv");
+        addToList(datei11, "2019-11.csv");
+        addToList(datei12, "2019-12.csv");
 
 
         System.out.println(Bestellung);
@@ -49,9 +51,20 @@ public class WirtschaftsRechnung {
         System.out.println(Produkt);
         System.out.println(Anzahl);
         System.out.println(Preis);
+
     }
+    public static ArrayList<String> readFile(String path) throws FileNotFoundException {
+        ArrayList<String> lines = new ArrayList<>();
+        Scanner sc = new Scanner(new File(path));
 
+        while (sc.hasNextLine()) {
+            lines.add(sc.nextLine());
+        }
 
+        sc.close();
+
+        return lines;
+    }
     public static void addToList(ArrayList<String> datei, String path) throws FileNotFoundException {
         datei = readFile(path);
         String[][] v = new String[datei.size()][7];
@@ -80,17 +93,42 @@ public class WirtschaftsRechnung {
             s++;
         }
     }
-    public static ArrayList<String> readFile(String path) throws FileNotFoundException {
-        ArrayList<String> lines = new ArrayList<>();
-        Scanner sc = new Scanner(new File(path));
+    public static void umsatzGenerator() throws Exception {
+        String[] standorte = {"Mannheim", "Heidelberg", "Schwetzingen", "Speyer", "Neustadt"};
+        String[] produkte = {"Staubsaugerroboter", "NAO-Roboter", "Wischroboter", "Lego-Roboter", "Spielzeugroboter"};
 
-        while (sc.hasNextLine()) {
-            lines.add(sc.nextLine());
+        double[] preise = {398.95, 8400.0, 289.0, 129.90, 49.99};
+        int counter = 1;
+
+        String jahr = "2019";
+
+        for (int i = 1; i <= 12; i++) {
+
+            PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(  jahr + "-" + i + ".csv")));
+
+            for (int j = 1; j < Math.random() * 500 + 200; j++) {
+                int tag = (int) (Math.random() * 12 + 1);
+                int standort = (int) (Math.random() * standorte.length);
+                int produkt = (int) (Math.random() * produkte.length);
+                int anzahl = (int) (Math.random() * 42 + 1);
+
+                String knr = "" + (int) (Math.random() * 9999 + 1);
+                String kunde = "K" + "0000".substring(knr.length()) + knr;
+
+
+                String anr = "A" + jahr + "00000".substring((""+counter).length()) + counter;
+
+                pw.println(anr + "," + tag + "." + i + ".2019," + standorte[standort] + "," + kunde + "," + produkte[produkt] + ","
+                        + anzahl + "," + preise[produkt]);
+
+                counter++;
+            }
+
+            pw.close();
         }
 
-        sc.close();
+        System.out.println("done.");
 
-        return lines;
     }
 
 }

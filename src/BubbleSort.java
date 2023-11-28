@@ -21,8 +21,13 @@ public class BubbleSort {
 //		int[] arr = {1,2,3,4,5,6,7,8};					// best case
         int[] arr = {17, 4, 3, 8, 7, 2, 5, 9, 12};        // *some* average case
 //		int[] arr = {17, 8, 6, 5, 4, 3, 2, 1};			// worst case
+        int z = 0;
+        for(int i : arr) {
+            System.out.println(bubbleSort(arr)[z]);
+            z++;
+        }
     }
-    public static int[] BubbleSort(int[] arr){
+    public static int[] bubbleSort(int[] arr){
 
         int zähler = 0;
         boolean sortiert;

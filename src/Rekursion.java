@@ -4,17 +4,22 @@ public class Rekursion {
 
         System.out.println(fakultät(3));
 
-        String buchstaben = "a b c d e f g h i j k l m n o p q r s t u v w x y z z z z z z z z z z z z";
-        ArrayList<String> alphabet = new ArrayList<>();
+        String buchstaben = "a b c d e f g h i j k l m n o p q r s t u v w x y z";
+        String[] alphabet = buchstaben.split(" ");
+
         int z=0;
-            for(int i=0; i<10; i++){
-                for(int n=z; n<fibonacciReihe(i); n++) {
-                    alphabet.add(buchstaben.split(" ")[n]);
-                    z++;
-                }
-                System.out.println(alphabet);
-                alphabet.clear();
+        outer: for(int y=0; y<10; y++){
+            for(int x=z; x<fibonacciReihe(y); x++) {
+                if(alphabet[x].equals("z"))
+                    break outer;
+                System.out.print(alphabet[fibonacciReihe(x)]+" ");
+                z++;
             }
+            /*for(int n=0; n<alphabet.length; n++) {
+                System.out.print(alphabet[n]+" ");
+            }*/
+            System.out.println();
+        }
     }
 
     public static long fakultät(int zähler){

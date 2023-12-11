@@ -4,6 +4,7 @@ public class GameCharacter {
     int health;
     int speed;
     int ppSize;
+    int height;
     public GameCharacter(int attack, int defense, int health, int speed, int ppSize){
         this.attack = attack;
         this.defense = defense;
@@ -11,5 +12,9 @@ public class GameCharacter {
         this.speed = speed;
         this.ppSize = ppSize;
     }//constructor
+    public GameCharacter(int attack, int defense, int health, int speed, int ppSize, int height){
+        this(attack,defense,health,speed,ppSize);
+        this.height = height;
+    }//constructorÜberladen
 
 }

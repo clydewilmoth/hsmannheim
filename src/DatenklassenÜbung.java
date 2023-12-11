@@ -1,7 +1,8 @@
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 public class DatenklassenÜbung {
-
     public static void main(String[] args){
 
         Scanner sc = new Scanner(System.in);
@@ -9,7 +10,7 @@ public class DatenklassenÜbung {
         GameCharacter Ruven = new GameCharacter(80, 15, 45, 75, 30);
         GameCharacter Paul = new GameCharacter(90, 40, 70, 25, 20);
 
-        confidenceTest(Ruven);
+        confidenceTest(Selim);
 
     }
 
